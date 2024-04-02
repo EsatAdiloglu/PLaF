@@ -1,0 +1,53 @@
+(lang dune 3.12)
+(name proc)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   ds.ml
+   dune-package
+   interp.ml
+   opam
+   proc.a
+   proc.cma
+   proc.cmi
+   proc.cmt
+   proc.cmx
+   proc.cmxa
+   proc.ml
+   proc__Ds.cmi
+   proc__Ds.cmt
+   proc__Ds.cmx
+   proc__Interp.cmi
+   proc__Interp.cmt
+   proc__Interp.cmx))
+ (libexec (proc.cmxs)))
+(library
+ (name proc)
+ (kind normal)
+ (synopsis "Interpreter for PROC")
+ (archives (byte proc.cma) (native proc.cmxa))
+ (plugins (byte proc.cma) (native proc.cmxs))
+ (native_archives proc.a)
+ (requires parser_plaf)
+ (main_module_name Proc)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name proc)
+     (visibility public)
+     (kind alias)
+     (source (path Proc) (impl (path proc.ml-gen))))
+    (name Proc)
+    (modules
+     (module
+      (obj_name proc__Ds)
+      (visibility public)
+      (source (path Ds) (impl (path ds.ml))))
+     (module
+      (obj_name proc__Interp)
+      (visibility public)
+      (source (path Interp) (impl (path interp.ml))))))
+   (wrapped true))))

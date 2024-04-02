@@ -1,0 +1,53 @@
+(lang dune 3.12)
+(name arith)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   arith.a
+   arith.cma
+   arith.cmi
+   arith.cmt
+   arith.cmx
+   arith.cmxa
+   arith.ml
+   arith__Ds.cmi
+   arith__Ds.cmt
+   arith__Ds.cmx
+   arith__Interp.cmi
+   arith__Interp.cmt
+   arith__Interp.cmx
+   ds.ml
+   dune-package
+   interp.ml
+   opam))
+ (libexec (arith.cmxs)))
+(library
+ (name arith)
+ (kind normal)
+ (synopsis "Interpreter for ARITH")
+ (archives (byte arith.cma) (native arith.cmxa))
+ (plugins (byte arith.cma) (native arith.cmxs))
+ (native_archives arith.a)
+ (requires parser_plaf)
+ (main_module_name Arith)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name arith)
+     (visibility public)
+     (kind alias)
+     (source (path Arith) (impl (path arith.ml-gen))))
+    (name Arith)
+    (modules
+     (module
+      (obj_name arith__Ds)
+      (visibility public)
+      (source (path Ds) (impl (path ds.ml))))
+     (module
+      (obj_name arith__Interp)
+      (visibility public)
+      (source (path Interp) (impl (path interp.ml))))))
+   (wrapped true))))

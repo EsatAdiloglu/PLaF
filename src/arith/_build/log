@@ -1,0 +1,34 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/esatadiloglu/.cache/dune/db
+# Workspace root: /Users/esatadiloglu/CS496/PLaF/src/arith
+# Auto-detected concurrency: 12
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/Users/esatadiloglu/CS496/PLaF/src/arith/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /Users/esatadiloglu/.opam/default/bin/ocamlc.opt -config > /var/folders/g5/2gkg99q16713d5ybhyzn6r000000gn/T/dune_7a3cc0_output
+# Promoting "_build/default/arith.opam" to "arith.opam"
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamldep.opt -modules -impl lib/ds.ml) > _build/default/lib/.arith.objs/arith__Ds.impl.d
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamldep.opt -modules -impl lib/interp.ml) > _build/default/lib/.arith.objs/arith__Interp.impl.d
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I lib/.arith.objs/byte -I /Users/esatadiloglu/.opam/default/lib/menhirLib -I /Users/esatadiloglu/.opam/default/lib/parser_plaf -no-alias-deps -opaque -open Arith -o lib/.arith.objs/byte/arith__Ds.cmo -c -impl lib/ds.ml)
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I lib/.arith.objs/byte -I /Users/esatadiloglu/.opam/default/lib/menhirLib -I /Users/esatadiloglu/.opam/default/lib/parser_plaf -no-alias-deps -opaque -open Arith -o lib/.arith.objs/byte/arith__Interp.cmo -c -impl lib/interp.ml)
+> File "lib/interp.ml", line 17, characters 17-19:
+> 17 |     apply_env id en
+>                       ^^
+> Error: Unbound value en
+[2]
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I lib/.arith.objs/byte -I lib/.arith.objs/native -I /Users/esatadiloglu/.opam/default/lib/menhirLib -I /Users/esatadiloglu/.opam/default/lib/parser_plaf -intf-suffix .ml -no-alias-deps -opaque -open Arith -o lib/.arith.objs/native/arith__Ds.cmx -c -impl lib/ds.ml)

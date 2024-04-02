@@ -1,0 +1,23 @@
+lib: [
+  "_build/install/default/lib/proc/META"
+  "_build/install/default/lib/proc/ds.ml"
+  "_build/install/default/lib/proc/dune-package"
+  "_build/install/default/lib/proc/interp.ml"
+  "_build/install/default/lib/proc/opam"
+  "_build/install/default/lib/proc/proc.a"
+  "_build/install/default/lib/proc/proc.cma"
+  "_build/install/default/lib/proc/proc.cmi"
+  "_build/install/default/lib/proc/proc.cmt"
+  "_build/install/default/lib/proc/proc.cmx"
+  "_build/install/default/lib/proc/proc.cmxa"
+  "_build/install/default/lib/proc/proc.ml"
+  "_build/install/default/lib/proc/proc__Ds.cmi"
+  "_build/install/default/lib/proc/proc__Ds.cmt"
+  "_build/install/default/lib/proc/proc__Ds.cmx"
+  "_build/install/default/lib/proc/proc__Interp.cmi"
+  "_build/install/default/lib/proc/proc__Interp.cmt"
+  "_build/install/default/lib/proc/proc__Interp.cmx"
+]
+libexec: [
+  "_build/install/default/lib/proc/proc.cmxs"
+]

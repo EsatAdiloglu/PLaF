@@ -1,0 +1,6 @@
+description = "Interpreter for ARITH"
+requires = "parser_plaf"
+archive(byte) = "arith.cma"
+archive(native) = "arith.cmxa"
+plugin(byte) = "arith.cma"
+plugin(native) = "arith.cmxs"

@@ -1,0 +1,6 @@
+description = "Interpreter for PROC"
+requires = "parser_plaf"
+archive(byte) = "proc.cma"
+archive(native) = "proc.cmxa"
+plugin(byte) = "proc.cma"
+plugin(native) = "proc.cmxs"
