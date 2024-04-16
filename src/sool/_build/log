@@ -1,0 +1,25 @@
+# dune utop
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/esatadiloglu/.cache/dune/db
+# Workspace root: /Users/esatadiloglu/CS496/PLaF/src/sool
+# Auto-detected concurrency: 12
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/Users/esatadiloglu/CS496/PLaF/src/sool/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /Users/esatadiloglu/.opam/default/bin/ocamlc.opt -config > /var/folders/g5/2gkg99q16713d5ybhyzn6r000000gn/T/dune_3be85b_output
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -bin-annot -I .utop/.utop.eobjs/byte -I /Users/esatadiloglu/.opam/default/lib/bytes -I /Users/esatadiloglu/.opam/default/lib/findlib -I /Users/esatadiloglu/.opam/default/lib/lambda-term -I /Users/esatadiloglu/.opam/default/lib/logs -I /Users/esatadiloglu/.opam/default/lib/lwt -I /Users/esatadiloglu/.opam/default/lib/lwt/unix -I /Users/esatadiloglu/.opam/default/lib/lwt_react -I /Users/esatadiloglu/.opam/default/lib/menhirLib -I /Users/esatadiloglu/.opam/default/lib/mew -I /Users/esatadiloglu/.opam/default/lib/mew_vi -I /Users/esatadiloglu/.opam/default/lib/ocaml/compiler-libs -I /Users/esatadiloglu/.opam/default/lib/ocaml/threads -I /Users/esatadiloglu/.opam/default/lib/ocaml/unix -I /Users/esatadiloglu/.opam/default/lib/ocplib-endian -I /Users/esatadiloglu/.opam/default/lib/ocplib-endian/bigstring -I /Users/esatadiloglu/.opam/default/lib/parser_plaf -I /Users/esatadiloglu/.opam/default/lib/react -I /Users/esatadiloglu/.opam/default/lib/result -I /Users/esatadiloglu/.opam/default/lib/trie -I /Users/esatadiloglu/.opam/default/lib/uchar -I /Users/esatadiloglu/.opam/default/lib/utop -I /Users/esatadiloglu/.opam/default/lib/uucp -I /Users/esatadiloglu/.opam/default/lib/uuseg -I /Users/esatadiloglu/.opam/default/lib/uutf -I /Users/esatadiloglu/.opam/default/lib/xdg -I /Users/esatadiloglu/.opam/default/lib/zed -I lib/.sool.objs/byte -no-alias-deps -o .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -c -impl .utop/utop.ml-gen)
+$ (cd _build/default && /Users/esatadiloglu/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -o .utop/utop.bc /Users/esatadiloglu/.opam/default/lib/ocaml/compiler-libs/ocamlcommon.cma /Users/esatadiloglu/.opam/default/lib/ocaml/compiler-libs/ocamlbytecomp.cma /Users/esatadiloglu/.opam/default/lib/ocaml/compiler-libs/ocamltoplevel.cma /Users/esatadiloglu/.opam/default/lib/findlib/findlib.cma /Users/esatadiloglu/.opam/default/lib/findlib/findlib_top.cma /Users/esatadiloglu/.opam/default/lib/logs/logs.cma /Users/esatadiloglu/.opam/default/lib/lwt/lwt.cma /Users/esatadiloglu/.opam/default/lib/logs/logs_lwt.cma /Users/esatadiloglu/.opam/default/lib/ocplib-endian/ocplib_endian.cma /Users/esatadiloglu/.opam/default/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /Users/esatadiloglu/.opam/default/lib/ocaml/unix/unix.cma /Users/esatadiloglu/.opam/default/lib/ocaml/threads/threads.cma /Users/esatadiloglu/.opam/default/lib/lwt/unix/lwt_unix.cma -I /Users/esatadiloglu/.opam/default/lib/lwt/../stublibs /Users/esatadiloglu/.opam/default/lib/react/react.cma /Users/esatadiloglu/.opam/default/lib/lwt_react/lwt_react.cma /Users/esatadiloglu/.opam/default/lib/result/result.cma /Users/esatadiloglu/.opam/default/lib/uutf/uutf.cma /Users/esatadiloglu/.opam/default/lib/uucp/uucp.cma /Users/esatadiloglu/.opam/default/lib/uuseg/uuseg.cma /Users/esatadiloglu/.opam/default/lib/zed/zed.cma /Users/esatadiloglu/.opam/default/lib/trie/trie.cma /Users/esatadiloglu/.opam/default/lib/mew/mew.cma /Users/esatadiloglu/.opam/default/lib/mew_vi/mew_vi.cma /Users/esatadiloglu/.opam/default/lib/lambda-term/lambda_term.cma -I /Users/esatadiloglu/.opam/default/lib/lambda-term/../stublibs /Users/esatadiloglu/.opam/default/lib/xdg/xdg.cma -I /Users/esatadiloglu/.opam/default/lib/xdg/../stublibs /Users/esatadiloglu/.opam/default/lib/utop/uTop.cma /Users/esatadiloglu/.opam/default/lib/menhirLib/menhirLib.cma /Users/esatadiloglu/.opam/default/lib/parser_plaf/parser_plaf.cma lib/sool.cma .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)

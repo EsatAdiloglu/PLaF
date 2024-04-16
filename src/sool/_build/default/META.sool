@@ -1,0 +1,6 @@
+description = "Interpreter for PROC"
+requires = "parser_plaf"
+archive(byte) = "sool.cma"
+archive(native) = "sool.cmxa"
+plugin(byte) = "sool.cma"
+plugin(native) = "sool.cmxs"

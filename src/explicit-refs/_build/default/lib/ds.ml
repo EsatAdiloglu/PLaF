@@ -10,7 +10,7 @@ type exp_val =
   | ProcVal of string*expr*env
   | PairVal of exp_val*exp_val
   | TupleVal of exp_val list
-  | RecordVal of (string*exp_val) list
+  | RecordVal of (string*(bool*exp_val)) list
   | UnitVal
   | RefVal of int
 and
@@ -54,9 +54,6 @@ let sequence (cs: ('a ea_result) list) : ('a list) ea_result  =
 
 let mapM (f:'a -> 'b ea_result) (vs:'a list) : ('b list) ea_result =
    sequence (List.map f vs)
-
-
-
 (* Operations on environments *)
 let empty_env : unit -> env ea_result =
   fun () ->
@@ -110,7 +107,7 @@ let tupleVal_to_list_of_evs: exp_val -> (exp_val list) ea_result = function
   | TupleVal(evs) -> return evs
   | _ -> error "Expected a tuple!"
 
-let fields_of_recordVal: exp_val -> ((string*exp_val) list) ea_result = function
+let fields_of_recordVal: exp_val -> ((string*(bool*exp_val)) list) ea_result = function
   | RecordVal(fs) -> return fs
   | _ -> error "Expected a record!"
 
@@ -118,7 +115,7 @@ let clos_of_procVal : exp_val -> (string*expr*env) ea_result =
   fun ev ->
   match ev with
   | ProcVal(id,body,en) -> return (id,body,en)
-  | _ -> error "Expected a closure!"          
+  | _ -> error "Expected a closure!"  
 
 let int_of_refVal =  function
   |  RefVal n -> return n
@@ -137,8 +134,8 @@ let rec string_of_expval = function
                                                    evs)  ^ ")" 
   | UnitVal -> "UnitVal " 
   | RefVal i -> "RefVal ("^string_of_int i^")"
-  | RecordVal(fs) -> "RecordVal("^ String.concat "," (List.map (fun (n,ev) ->
-      n^"="^string_of_expval ev) fs) ^")"
+  | RecordVal(fs) -> "RecordVal("^ String.concat "," (List.map (fun (n,(b,ev)) ->
+      n^ (if b then "<=" else "=") ^string_of_expval ev) fs) ^")"
 and
    string_of_env' ac = function
   | EmptyEnv ->  "["^String.concat ",\n" ac^"]"

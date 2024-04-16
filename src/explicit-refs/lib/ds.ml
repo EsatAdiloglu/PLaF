@@ -54,9 +54,6 @@ let sequence (cs: ('a ea_result) list) : ('a list) ea_result  =
 
 let mapM (f:'a -> 'b ea_result) (vs:'a list) : ('b list) ea_result =
    sequence (List.map f vs)
-
-
-
 (* Operations on environments *)
 let empty_env : unit -> env ea_result =
   fun () ->
@@ -118,7 +115,7 @@ let clos_of_procVal : exp_val -> (string*expr*env) ea_result =
   fun ev ->
   match ev with
   | ProcVal(id,body,en) -> return (id,body,en)
-  | _ -> error "Expected a closure!"          
+  | _ -> error "Expected a closure!"  
 
 let int_of_refVal =  function
   |  RefVal n -> return n

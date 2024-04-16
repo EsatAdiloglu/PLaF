@@ -1,0 +1,28 @@
+
+(* Add exercise 3 *)
+
+let n_left = { data <= 12; left <= 0; right <= 0}    (* 0 in head signals null *)
+in let n_right = { data <= 44; left <= 0; right <= 0}
+in let n_root = { data <= 33; left <= n_left ; right <= n_right }
+in let t1 = { root <= n_root ; length <= 3} 
+in let add_bt = proc (t) { proc (v) {
+    letrec add_bt_helper (nd) =
+        if (nd.data) = v then 0
+        else if v << (nd.data) then
+            if number?(nd.left) then (nd.left <= {data <= v; left <= 0; right <= 0})
+            else (add_bt_helper nd.left)
+        else
+            if number?(nd.right) then (nd.right <= {data <= v; left <= 0; right <= 0})
+            else ((add_bt_helper nd.right))
+    in  if (t.length = 0) 
+            then t.root <= {data <= v; left <= 0 ; right <= 0}
+        else
+            if number?((add_bt_helper t.root))
+            then t.length <= t.length
+            else t.length <= t.length + 1
+}}
+in begin
+     ((add_bt t1) 23);
+     debug(t1)
+   end
+   

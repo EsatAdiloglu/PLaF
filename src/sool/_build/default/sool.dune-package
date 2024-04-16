@@ -1,0 +1,71 @@
+(lang dune 3.12)
+(name sool)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   ds.ml
+   dune-package
+   interp.ml
+   opam
+   reM.ml
+   sool.a
+   sool.cma
+   sool.cmi
+   sool.cmt
+   sool.cmx
+   sool.cmxa
+   sool.ml
+   sool__Ds.cmi
+   sool__Ds.cmt
+   sool__Ds.cmx
+   sool__Interp.cmi
+   sool__Interp.cmt
+   sool__Interp.cmx
+   sool__ReM.cmi
+   sool__ReM.cmt
+   sool__ReM.cmx
+   sool__Store.cmi
+   sool__Store.cmt
+   sool__Store.cmti
+   sool__Store.cmx
+   store.ml
+   store.mli))
+ (libexec (sool.cmxs)))
+(library
+ (name sool)
+ (kind normal)
+ (synopsis "Interpreter for PROC")
+ (archives (byte sool.cma) (native sool.cmxa))
+ (plugins (byte sool.cma) (native sool.cmxs))
+ (native_archives sool.a)
+ (requires parser_plaf)
+ (main_module_name Sool)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sool)
+     (visibility public)
+     (kind alias)
+     (source (path Sool) (impl (path sool.ml-gen))))
+    (name Sool)
+    (modules
+     (module
+      (obj_name sool__Ds)
+      (visibility public)
+      (source (path Ds) (impl (path ds.ml))))
+     (module
+      (obj_name sool__Interp)
+      (visibility public)
+      (source (path Interp) (impl (path interp.ml))))
+     (module
+      (obj_name sool__ReM)
+      (visibility public)
+      (source (path ReM) (impl (path reM.ml))))
+     (module
+      (obj_name sool__Store)
+      (visibility public)
+      (source (path Store) (intf (path store.mli)) (impl (path store.ml))))))
+   (wrapped true))))
