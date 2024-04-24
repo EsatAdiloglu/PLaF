@@ -1,6 +1,10 @@
 open ReM
 open Parser_plaf.Ast
-
+(*
+  Name: Esat Adiloglu
+  Name: Michael Hanna
+  Pledge: I pledge my honor that I have abided by the Stevens Honor System
+   *)
 (*  ;;;;;;;;;;;;;;;; type environments ;;;;;;;;;;;;;;;; *)
     
 type tenv =

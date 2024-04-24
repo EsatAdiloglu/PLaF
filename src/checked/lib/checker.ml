@@ -2,7 +2,12 @@ open ReM
 open Dst
 open Parser_plaf.Ast
 open Parser_plaf.Parser
-       
+
+(*
+  Name: Esat Adiloglu
+  Name: Michael Hanna
+  Pledge: I pledge my honor that I have abided by the Stevens Honor System
+   *)
 let rec chk_expr : expr -> texpr tea_result = function 
   | Int _n -> return IntType
   | Var id -> apply_tenv id
@@ -52,6 +57,84 @@ let rec chk_expr : expr -> texpr tea_result = function
      else error
          "LetRec: Type of recursive function does not match
 declaration")
+  | NewRef(e) ->
+    chk_expr e >>= fun t ->
+    return (RefType t)
+  | DeRef(e) ->
+    chk_expr e >>= fun v ->
+    (match v with
+    | RefType t -> return t
+    | _ -> error "deref: argument must be a reference")
+  | SetRef(e1,e2) ->
+    chk_expr e1 >>= fun t1 ->
+    chk_expr e2 >>= fun t2 ->
+    (match t1 with
+    | RefType t3 ->
+      if t3 = t2 then return UnitType
+      else error "setref: Type of value inside of reference and type of new value do not match"
+    | _ -> error "setref: Expected a reference type")
+  | BeginEnd([]) -> 
+    return UnitType
+  | BeginEnd(es) -> 
+    List.fold_left (fun c e -> c >>= fun _ -> chk_expr e) (return UnitType) es
+  | EmptyList(t) ->
+    (match t with
+    |Some t2 -> return (ListType t2)
+    |None -> error "emptyList: type declaration is missing")
+  | Cons(e1, e2) -> 
+    chk_expr e1 >>= fun t1 ->
+    chk_expr e2 >>= fun t2 ->
+    (match t2 with
+     | ListType t3 -> 
+        if(t1 = t3)
+        then return (ListType t3)
+        else error "cons: type of head and tail do not match"
+     | _ -> error "cons: Expected a list type")
+  | IsEmpty(e) ->
+    chk_expr e >>= fun t ->
+    (match t with
+     | ListType _ -> return BoolType
+     | TreeType _ -> return BoolType
+     | _ -> error "empty?: Expected a list or tree type")
+  | Hd(e) ->
+    chk_expr e >>= fun t ->
+    (match t with
+    | ListType t2 -> return t2
+    | _ -> error "hd: Expected a list type")
+  | Tl(e) -> 
+    chk_expr e >>= fun t ->
+    (match t with 
+     | ListType _ -> return t
+     | _ -> error "tl: Expected a list type")
+  | EmptyTree(t) ->
+    (match t with
+    | Some t2 -> return (TreeType t2)
+    | None -> error "emptytree: type declaration is missing")
+  | Node(de, le, re) ->
+    chk_expr de >>= fun t1 ->
+    chk_expr le >>= fun t2 ->
+    chk_expr re >>= fun t3 ->
+    (match t2,t3 with
+    | TreeType t4, TreeType t5 ->
+      if(t1 = t4 && t1 = t5) then return (TreeType t1)
+      else if (t1 = t4 && t1 != t5) then error "node: Type of re and de do not match"
+      else if (t1 != t4 && t1 = t5) then error "node: Type of le and de do not match"
+      else error "node: Type of le and re do not match the type of de"
+    | TreeType _, _ -> error "node: Expected a tree type for re"
+    | _, TreeType _ -> error "node: Expected a tree type for le"
+    | _,_ -> error "node: Expected a tree type for le and re")
+  | CaseT(target,emptycase,id1,id2,id3,nodecase) ->
+    chk_expr target >>= fun tr ->
+    (match tr with
+    | TreeType t ->
+      chk_expr emptycase >>= fun s1 ->
+      (extend_tenv id1 t >>+
+       extend_tenv id2 tr >>+
+       extend_tenv id3 tr >>+
+       chk_expr nodecase) >>= fun s2 ->
+       if s1 = s2 then return s1
+       else error "CaseT: Type of emptycase and nodecase do not match"
+    | _ -> error "CaseT: Expected a tree type")
   | Debug(_e) ->
     string_of_tenv >>= fun str ->
     print_endline str;
@@ -69,6 +152,7 @@ let chk (e:string) : texpr result =
 let chkpp (e:string) : string result =
   let c = e |> parse |> chk_prog
   in run_teac (c >>= fun t -> return @@ string_of_texpr t)
+
 
 
 

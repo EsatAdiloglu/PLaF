@@ -2,7 +2,11 @@ open Ds
 open ReM
 open Parser_plaf.Ast
 open Parser_plaf.Parser
-       
+(*
+  Name: Esat Adiloglu
+  Name: Michael Hanna
+  Pledge: I pledge my honor that I have abided by the Stevens Honor System
+   *)
 let g_store = Store.empty_store 20 (NumVal 0)
 
 let rec eval_expr : expr -> exp_val ea_result = fun e ->
@@ -89,6 +93,12 @@ let rec eval_expr : expr -> exp_val ea_result = fun e ->
     eval_expr e2 >>= fun v2 ->
     Store.set_ref g_store v1 v2 >>= fun _ ->
     return UnitVal
+  | IsEqual (e1, e2) ->
+    eval_expr e1 >>=
+    int_of_numVal >>= fun n1 ->
+    eval_expr e2 >>=
+    int_of_numVal >>= fun n2 ->
+    return (BoolVal (n1 = n2))
   | Debug(_e) ->
     string_of_env >>= fun str_env ->
     let str_store = Store.string_of_store string_of_expval g_store 
